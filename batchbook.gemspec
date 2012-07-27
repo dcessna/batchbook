@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/batchblue/batchbook}
   s.rdoc_options = ["--main", "README.txt"]
   s.require_paths = ["lib"]
-  s.signing_key = %q{/Users/erickrause/.gem/gem-private_key.pem}
+  # s.signing_key = %q{/Users/erickrause/.gem/gem-private_key.pem}
   s.summary = %q{Wrapper for Batchbook XML API}
 
   s.add_dependency(%q<activeresource>, [">= 2.3.5"])
