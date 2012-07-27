@@ -29,7 +29,7 @@ module BatchBook
     # Sets the Batchbook API Key for all resources.
     def token=(value)
       resources.each do |r|
-        r.user = value
+        r.query_options = {:auth_token => value}
       end
     end
     
@@ -46,7 +46,7 @@ module BatchBook
 
   self.host_format = '%s://%s/%s'
   self.domain_format = '%s.batchbook.com'
-  self.path = 'service'
+  self.path = 'api/v1'
   self.protocol = 'https'
 
   class Base < ActiveResource::Base
@@ -57,6 +57,11 @@ module BatchBook
       BatchBook.resources << base
       class << base
         attr_accessor :site_format
+        attr_accessor :query_options
+        
+        def collection_path(prefix_options = {}, query_options = {})
+          super(prefix_options, self.query_options.merge(query_options))
+        end
       end
       base.site_format = '%s'
       super
